@@ -20,11 +20,12 @@ This has:
 
 ## Execution
 1. Set the hostname and static IP for a base installed Ubunto 22.04 server, the target would have been booted with a DHCP IP on the 192.168.4.0/24 subnet - you can use what you like but will need to edit the script/provide different paramters:
-```sh  
- $ ssh ubuadmin@192.168.4.5 'sudo bash -s' master-node < setup-ubu22-k8s-node.sh
+```sh
+ $ ssh ubuadmin@192.168.4.5 'sudo bash -s master-node 192.168.4.110' < set-hname-ip.sh
+
 ```
 2. Once the VM has rebooted point the main build script at the new static IP:
 ```sh
- $ ssh -p 22006 ubuadmin@192.168.0.19 'sudo bash -s worker02 192.168.4.112' < set-hname-ip.sh
+ $ ssh ubuadmin@192.168.4.110 'sudo bash -s' master-node < setup-ubu22-k8s-node.sh
  ```
 3. Repeat for worker1 and worker 2 - you will need to execute the kubeadm join command output from the initialisation of the master-node on every worker node, the script will not do it fpr you.
